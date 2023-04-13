@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 import skypro.homework9course2.Domane.Employee;
 import skypro.homework9course2.Service.EmployeeService;
 
-import java.util.Collection;
+import java.util.List;
 
 @RestController
 @RequestMapping("/departments")
@@ -28,13 +28,13 @@ private final EmployeeService service;
         return EmployeeService.getMinWage(id);
     }
     @GetMapping("/all")
-    public Employee getAllInDepart(@RequestParam int departmentId){
-            return service.getAllInDepart(departmentId);
+    public List<Employee> getAllInDepart(){
+            return service.getAllInDepart();
     }
 
     @GetMapping("/departments/all")
-    public Employee getAllByDepart(@RequestParam ("departmentId") Integer id){
-        return (Employee) EmployeeService.getAllByDepart(id);
+    public List<Employee> getAllByDepart(@RequestParam ("departmentId")Integer id) {
+        return service.getAllByDepart(id);
     }
 
 }

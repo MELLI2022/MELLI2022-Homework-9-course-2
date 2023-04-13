@@ -45,15 +45,16 @@ public class EmployeeService {
                 .min(Comparator.comparingInt(Employee::getWage))
                 .orElseThrow();
     }
-    public Employee getAllInDepart(int departmentId){
-        return (Employee) Arrays.stream(employees)
+    public List<Employee> getAllInDepart(){
+        return Arrays.stream(employees)
                 .sorted(Comparator.comparingInt(Employee::getDepartment))
                 .collect(Collectors.toList());
 
     }
 
-    public static List<Employee> getAllByDepart(int id){
+    public List<Employee> getAllByDepart(int id){
         return Arrays.stream(employees)
+                .filter(Objects::nonNull)
                 .filter(e -> e.getDepartment() == id )
                 .collect(Collectors.toList());
 
